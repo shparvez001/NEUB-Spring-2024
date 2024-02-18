@@ -158,7 +158,7 @@ course=course.toLowerCase();
 if(course)
 {
 	var courseDetails = courses.find(courseDetails => courseDetails.code === course);
-	if(courseDetails.code2.charAt(6)%2==0)
+	if(courseDetails.code2.charAt(11)%2==0)
 	{
 		var headingText=courseDetails.code2+" ("+courseDetails.title+")<br> "+semester+" "+courseDetails.term+" Lab Test";
 	}
