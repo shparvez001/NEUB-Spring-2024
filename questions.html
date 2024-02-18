@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- redundant jquery and jquery mobile library. Now using vanilla javascript
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+-->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<!-- jQuery library -->
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+<title>NEUB Summer 2021 Assignments</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<style>
+.btn-xl {
+         padding: 10px 20px;
+         font-size: 20px;
+         border-radius: 10px;
+         width:50%;
+        }
+table {
+	border-collapse: collapse;
+	width: 80%;
+}
+td, th {
+	padding: 10px;
+}
+th {
+	background-color: #54585d;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #54585d;
+}
+td {
+	color: #636363;
+	border: 1px solid #dddfe1;
+}
+tr {
+	background-color: #f9fafb;
+}
+tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+
+
+
+</style>
+
+</head>
+<body onhashchange="loadContents()">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" id="navbar-brand" href="/NEUB-Summer-2021/">SHP</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav" id="menuItems">
+  			<li><a id="homeLink" title="Home"  href="">Home</a></li>
+  			<li><a id="mainSiteLink" title=""  href=""></a></li>
+        </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+<script src="menuConfig.js"></script>
+<br>
+
+
+<div class="container-fluid">
+
+<div class="row jumbotron" style="background:transparent !important" >
+<!-- Actual Contents  -->
+<h4><span id="links">Select Other Course: </span></h4>
+<h2 style="text-align:center;" id="headingText"></h2>
+
+<div style="text-align:center;" id="additionalInstructions"></div>
+
+<table  border="1" width="100%" align="center"  >
+<tbody id="questions">
+</tbody>
+</table>
+<div style="text-align:center;"><b><i><span id="notice"  ></span></i></b></div>
+<div style="text-align:center;"><b><i><span id="debugger"  ></span></i></b></div>
+</div>
+</div>
+
+<div class="row"></div>
+
+<script>
+var menuCourses=[
+{link:'#che101',text:'CHE 101'},
+{link:'#cse221',text:'CSE 221'},
+{link:'#che101f',text:'CHE 101 Final'},
+{link:'#cse221f',text:'CSE 221 Final'}
+];
+
+if(window.location.hash.length==0)
+{
+  document.getElementById("links").innerHTML = "Select a Course: ";
+}
+
+for(var i=0;i<menuCourses.length;i++)
+{
+  if (i!=0)
+  {
+    document.getElementById("links").innerHTML +="  |  "
+  }
+	document.getElementById("links").innerHTML +='<a title="'+menuCourses[i].text+'"  href="'+menuCourses[i].link+'">'+menuCourses[i].text+'</a> ';
+}
+
+/*
+  instructions
+  a json file With the following columns needs to be created
+  Reg   Name  Set
+  USe website like https://tableconvert.com/?output=json to create json file
+*/
+
+//Load Contents
+var semester=currentSemester;
+var courses=[
+{code:'che101', code2:'CHE 101',title:'Fundamentals of Chemistry', baseLink:'midQ/che101/NEUB_CHE_101_Summer_2021_Midterm', term:'Midterm'},
+{code:'che101f', code2:'CHE 101',title:'Fundamentals of Chemistry', baseLink:'finalQ/che101f/NEUB_CHE_101_Summer_2021_Final', term:'Final'},
+{code:'cse221', code2:'CSE 221',title:'Digital Logic Design', baseLink:'midQ/cse221/NEUB_CSE_221_Summer_2021_Midterm', term:'Midterm'},
+{code:'cse221f', code2:'CSE 221',title:'Digital Logic Design', baseLink:'finalQ/cse221f/NEUB_CSE_221_Summer_2021_Final', term:'Final'},
+{code:'cse222f', code2:'CSE 222',title:'Digital Logic Design Lab', baseLink:'finalQ/cse222/NEUB_CSE_222_Spring_2021_Lab_Test', term:'Final'},
+];
+var additionalInstructions=[
+{code:'cse222',instruction:'<h3 style="text-align:center;"><a href="midQ/cse222/Simulation-File.zip">Download the simulation file</a></h3><h3 style="text-align:center;"><a href="midQ/cse122/NEUB CSE 122 Fall 2020 Lab Test 1 Answerscript.docx">Download the answer script</a></h3>'},
+{code:'cse222f',instruction:'<h3 style="text-align:center;">Download the question as assigned to your registration number and submit according to the instructions given in the question.</h3>'}
+];
+
+function loadContents()
+{
+document.getElementById("questions").innerHTML = "";
+var course=window.location.hash;
+course=course.slice(1, course.length);
+course=course.toLowerCase();
+
+if(course)
+{
+	var courseDetails = courses.find(courseDetails => courseDetails.code === course);
+	if(courseDetails.code2.charAt(6)%2==0)
+	{
+		var headingText=courseDetails.code2+" ("+courseDetails.title+")<br> "+semester+" "+courseDetails.term+" Lab Test";
+	}
+	else {	var headingText=courseDetails.code2+" ("+courseDetails.title+")<br> "+semester+" "+courseDetails.term+" Assignment"; }
+	document.getElementById("headingText").innerHTML = headingText;
+	var instruction = additionalInstructions.find(instruction => instruction.code === course);
+	if(instruction) {document.getElementById("additionalInstructions").innerHTML = instruction.instruction; }
+	else {document.getElementById("additionalInstructions").innerHTML = ""; }
+	//document.title=headingText.replaceAll("<br>","")
+	//console.log(courseDetails)
+	//document.getElementById("debugger").innerHTML='111111111111';
+	document.title=headingText.replace("<br>","");
+	var obj_data = new Object();
+	var link;
+	var request = new XMLHttpRequest();
+	request.open('GET', course+'.json', true);
+
+	request.onload = function() {
+	  if (request.status >= 200 && request.status < 400) {
+		// Success!
+		var obj_data = JSON.parse(request.responseText);
+		//window.lll=obj_data;
+		if(obj_data.length>0&&course!="cse214f")//Added a special check for Not showing table in cse 214 final exam
+		{
+			document.getElementById("questions").innerHTML += "<tr><td><b>Registration Number</b></td><td><b>Name</b></td><td><b>Question</b></td></tr>";
+
+			for(var i=0;i < obj_data.length;i++)
+			{
+				if(obj_data[i].Set)
+				{
+				link='<a href="'+courseDetails.baseLink+' ('+obj_data[i].Set+').pdf"><strong>Set: '+obj_data[i].Set+'</strong></a>';
+				document.getElementById("questions").innerHTML += "<tr><td>"+obj_data[i].Reg + " </td><td>"+obj_data[i].Name+ "</td><td>"+link+ "</td></tr>";
+				}
+			}
+			document.getElementById("notice").innerHTML='If your name is not listed above kindly contact me immediately.';
+		}
+
+
+	  } else {
+		document.getElementById("notice").innerHTML='Questions not available';
+		document.getElementById("headingText").innerHTML = '';
+
+	  }
+	};
+
+	request.onerror = function() {
+	  	document.getElementById("notice").innerHTML='Failed to load Contents';
+		document.getElementById("headingText").innerHTML = '';
+	};
+
+	request.send();
+
+
+}
+}
+
+document.onload=loadContents();
+</script>
+
+</body>
+</html>
