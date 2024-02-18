@@ -162,7 +162,7 @@ if(course)
 	{
 		var headingText=courseDetails.code2+" ("+courseDetails.title+")<br> "+semester+" "+courseDetails.term+" Lab Test";
 	}
-	else {	var headingText=courseDetails.code2+" ("+courseDetails.title+")<br> "+semester+" "+courseDetails.term+" Assignment"; }
+	else {	var headingText=courseDetails.code2+" ("+courseDetails.title+")<br> "+semester+" "+courseDetails.term+" "; }
 	document.getElementById("headingText").innerHTML = headingText;
 	var instruction = additionalInstructions.find(instruction => instruction.code === course);
 	if(instruction) {document.getElementById("additionalInstructions").innerHTML = instruction.instruction; }
