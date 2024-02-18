@@ -23,7 +23,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
-<title>NEUB Summer 2021 Assignments</title>
+<title>NEUB Spring 2024 Assignments</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <style>
 .btn-xl {
@@ -113,10 +113,8 @@ tr:nth-child(odd) {
 
 <script>
 var menuCourses=[
-{link:'#che101',text:'CHE 101'},
-{link:'#cse221',text:'CSE 221'},
-{link:'#che101f',text:'CHE 101 Final'},
-{link:'#cse221f',text:'CSE 221 Final'}
+{link:'#cse06131213-4',text:'CSE-06131213 Assignment 4'},
+{link:'#cse06131213',text:'CSE-06131213'},
 ];
 
 if(window.location.hash.length==0)
@@ -143,11 +141,7 @@ for(var i=0;i<menuCourses.length;i++)
 //Load Contents
 var semester=currentSemester;
 var courses=[
-{code:'che101', code2:'CHE 101',title:'Fundamentals of Chemistry', baseLink:'midQ/che101/NEUB_CHE_101_Summer_2021_Midterm', term:'Midterm'},
-{code:'che101f', code2:'CHE 101',title:'Fundamentals of Chemistry', baseLink:'finalQ/che101f/NEUB_CHE_101_Summer_2021_Final', term:'Final'},
-{code:'cse221', code2:'CSE 221',title:'Digital Logic Design', baseLink:'midQ/cse221/NEUB_CSE_221_Summer_2021_Midterm', term:'Midterm'},
-{code:'cse221f', code2:'CSE 221',title:'Digital Logic Design', baseLink:'finalQ/cse221f/NEUB_CSE_221_Summer_2021_Final', term:'Final'},
-{code:'cse222f', code2:'CSE 222',title:'Digital Logic Design Lab', baseLink:'finalQ/cse222/NEUB_CSE_222_Spring_2021_Lab_Test', term:'Final'},
+{code:'cse06131213', code2:'CSE-06131213',title:'Electronic Devices and Circuits Assignment 4', baseLink:'cse-06131213-a-4/NEUB_CSE_06131213_Spring_2024_Assignment_4-', term:'Assignment 4'},
 ];
 var additionalInstructions=[
 {code:'cse222',instruction:'<h3 style="text-align:center;"><a href="midQ/cse222/Simulation-File.zip">Download the simulation file</a></h3><h3 style="text-align:center;"><a href="midQ/cse122/NEUB CSE 122 Fall 2020 Lab Test 1 Answerscript.docx">Download the answer script</a></h3>'},
@@ -195,7 +189,7 @@ if(course)
 			{
 				if(obj_data[i].Set)
 				{
-				link='<a href="'+courseDetails.baseLink+' ('+obj_data[i].Set+').pdf"><strong>Set: '+obj_data[i].Set+'</strong></a>';
+				link='<a href="'+courseDetails.baseLink+obj_data[i].Set+'.pdf"><strong>Set: '+obj_data[i].Set+'</strong></a>';
 				document.getElementById("questions").innerHTML += "<tr><td>"+obj_data[i].Reg + " </td><td>"+obj_data[i].Name+ "</td><td>"+link+ "</td></tr>";
 				}
 			}

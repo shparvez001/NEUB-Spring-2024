@@ -1,6 +1,6 @@
-var currentSemester="Summer 2021";
-var siteTitle="NEUB Summer 2021 Midterm and Semester Final Assignments";
-var homeLink="/NEUB-Summer-2021/";
+var currentSemester="Spring 2024";
+var siteTitle="NEUB Spring 2024 Assignments";
+var homeLink="/NEUB-Spring-2024/";
 var mainSiteLink="http://neub.shparvez.net";
 var mainSiteName="Course Website";
 
